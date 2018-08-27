@@ -17,9 +17,8 @@
 
 
 	<div class="aPage loading" id="loading">
-		<div class="ball_spread"></div>
-		<div class="ball_shrink"></div>
-		<p class="loading-percent">11%</p>
+		<div class="loader"></div>
+		<p class="loading-percent">10%</p>
 	</div>
 
 
@@ -36,6 +35,18 @@
 	lazyLoad(true);
 	showPage = function () {
 		$(".indexPage").show();
+		pWidget.config({
+			music: true,
+		});
+		// 音乐自动播放
+		var music = document.getElementById("music");
+		document.addEventListener("WeixinJSBridgeReady", function () {
+			music.play();
+		}, false);
+		document.addEventListener('YixinJSBridgeReady', function () {
+			music.play();
+		}, false);
+		music.play();
 	};
 </script>
 <script src="js/reg.js"></script>
