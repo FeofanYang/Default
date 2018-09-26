@@ -10,15 +10,16 @@
 	<script src="js/basic.js"></script>
 	<link href="css/basic.css" rel="stylesheet">
 	<link href="css/index.css" rel="stylesheet">
-	<link href="css/iconfont.css" rel="stylesheet">
+	<!-- <link href="https://cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet"> -->
 </head>
 
 <body>
+	<audio src="mp3/music.mp3" id="music" preload autoplay loop></audio>
 
 
-	<div class="aPage loading" id="loading">
+	<div class="aPage preloadPage">
 		<div class="loader"></div>
-		<p class="loading-percent">10%</p>
+		<p class="preloadPercent">10%</p>
 	</div>
 
 
@@ -29,26 +30,36 @@
 
 </body>
 <script>
-	$(document).bind("touchmove", function (evt) {
-		evt.preventDefault();
-	});
+	document.body.addEventListener('touchmove', function (e) {
+		e.preventDefault();
+	}, { passive: false });
 	lazyLoad(true);
 	showPage = function () {
-		$(".indexPage").show();
 		pWidget.config({
 			music: true,
 		});
-		// 音乐自动播放
-		var music = document.getElementById("music");
+		$(".indexPage").show();
+	};
+
+	// 音乐自动播放
+	function audioAutoPlay(id) {
+		var audio = document.getElementById(id),
+			play = function () {
+				audio.play();
+				document.removeEventListener("touchstart", play, false);
+			};
+		audio.play();
 		document.addEventListener("WeixinJSBridgeReady", function () {
-			music.play();
+			play();
 		}, false);
 		document.addEventListener('YixinJSBridgeReady', function () {
-			music.play();
+			play();
 		}, false);
-		music.play();
-	};
+		document.addEventListener("touchstart", play, false);
+	}
+	audioAutoPlay('music');
+
 </script>
-<script src="js/reg.js"></script>
+<!-- <script src="js/reg.js"></script> -->
 
 </html>
