@@ -17,28 +17,26 @@
 	<audio src="mp3/music.mp3" id="music" preload autoplay loop></audio>
 
 
-	<div class="aPage preloadPage">
+	<div class="page_css page_preload">
 		<div class="loader"></div>
-		<p class="preloadPercent">10%</p>
+		<p class="loader_text">10%</p>
 	</div>
 
-
-	<div class="aPage indexPage hidden">
+	<div class="page_css page_index el_hide">
 		<img data-src="images/ready.png" class="preload">
 	</div>
-
-
 </body>
+
 <script>
 	document.body.addEventListener('touchmove', function (e) {
 		e.preventDefault();
 	}, { passive: false });
-	lazyLoad(true);
-	showPage = function () {
-		pWidget.config({
+	fnLazyLoad(true);
+	fnShowPage = function () {
+		oWidget.config({
 			music: true,
 		});
-		$(".indexPage").show();
+		$(".page_index").show();
 	};
 
 	// 音乐自动播放
